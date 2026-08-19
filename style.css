@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'JetBrains Mono', monospace;
+	background-image: url('./image_folder/pintImage.jpg');
+	background-repeat: no-repeat;
+	width: 100%;
+	background-size: cover;
+	background-position: 45% 23%;
+	min-height: 100dvh;
+	min-height: 100vh;
+}
+
+.container {
+	height: auto;
+	width: auto;
+	max-width: 400px;
+	border: 2px solid #111218;
+	margin: auto;
+	background-color: #111218;
+	margin-top: 2em;
+	position: relative;
+}
+.big_container {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	padding: 1.5em;
+	margin-top: 2em;
+	gap: 2em;
+}
+.input-text {
+	grid-column: 1 / -1;
+	justify-self: stretch;
+	padding: 0.8em 0.5rem;
+	font-size: 1rem;
+	font-weight: 600;
+	outline: 2px solid #115181;
+	outline-offset: 1.5px;
+	text-align: right;
+}
+.button_container {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 0.8em;
+}
+.small_container {
+	grid-column: 1 / -1;
+}
+
+button {
+	padding: 1em;
+	font-size: 1rem;
+	font-weight: 600;
+	cursor: pointer;
+	background-color: #115181;
+	border: none;
+	border-radius: 10px;
+	color: #f1f1f1;
+}
+.time {
+	position: absolute;
+	right: 18px;
+	top: 10px;
+	color: #f1f1f1;
+	background-color: #115181;
+	padding: 0.3em 1.5em;
+	outline: 1px solid #f1f1f1;
+	outline-offset: 2px;
+	border-radius: 6px;
+}

@@ -18,6 +18,6 @@ function divide(six, three) {
 }
 console.log(divide(3, 6));
 
-let additionOperator = 3 + 5;
-let subtractOperator = 4 - 3;
-let divideOperator = 4 / 2;
+let additionOperator = undefined;
+let subtractOperator = undefined;
+let divideOperator = undefined;
