@@ -17,7 +17,6 @@ function divide(six, three) {
 function remainder(num1, num2) {
 	return num1 % num2;
 }
-console.log(remainder(3, 4));
 
 let currentNumber = '0';
 let operator = '';
@@ -35,7 +34,6 @@ let addOpera = '';
 
 displayText.value = '0';
 
-console.log(operatorBtn);
 function chooseOperator(event) {
 	operator = event.target.innerText;
 
@@ -157,7 +155,7 @@ equalBtn.addEventListener('click', () => {
 				previousNumber = currentNumber;
 				currentNumber = '';
 				updateValue(result);
-				previousNumber;
+				previousNumber = '';
 				break;
 			case '%':
 				result = operate(operator, prev, curr);
@@ -166,8 +164,7 @@ equalBtn.addEventListener('click', () => {
 				previousNumber = currentNumber;
 				currentNumber = '';
 				updateValue(result);
-				// result = '';
-				previousNumber;
+				previousNumber = '';
 				break;
 			case 'x':
 				result = operate(operator, prev, curr);
@@ -186,14 +183,15 @@ equalBtn.addEventListener('click', () => {
 						updateValue(result);
 						break;
 				}
-				break;
-				result = operate(operator, prev, curr);
-				currentNumber = result;
-				operator = '';
-				previousNumber = currentNumber;
-				currentNumber = '';
-				updateValue(result);
-				previousNumber = '';
+				if (operator === '/' && curr !== 0 && prev !== 0) {
+					result = operate(operator, prev, curr);
+					currentNumber = result;
+					operator = '';
+					previousNumber = currentNumber;
+					currentNumber = '';
+					updateValue(result);
+					previousNumber = '';
+				}
 				break;
 			default:
 				break;
