@@ -63,6 +63,7 @@ button {
 	border-radius: 10px;
 	color: #f1f1f1;
 	transition: opacity 0.15s;
+	box-shadow: -0.5px -0.5px 4.5px #f1f1f1;
 }
 button:hover {
 	opacity: 0.8;

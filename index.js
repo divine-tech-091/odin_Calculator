@@ -17,9 +17,8 @@ function divide(six, three) {
 function remainder(num1, num2) {
 	return num1 % num2;
 }
-console.log(remainder(3, 4));
 
-let currentNumber = '0';
+let currentNumber = '';
 let operator = '';
 let previousNumber = '';
 
@@ -30,20 +29,40 @@ const equalBtn = document.querySelector('#equal');
 const clearBtn = document.querySelector('#clear_All');
 const backSpaceBtn = document.querySelector('#clear');
 
+const decimalPoint = document.querySelector('#decimalPoint');
+
 let result = '';
 let addOpera = '';
 
 displayText.value = '0';
 
-console.log(operatorBtn);
+let savePoint = '';
+let isPoint = '';
+
+decimalPoint.addEventListener('click', (event) => {
+	savePoint = event.target.innerText;
+
+	if (isPoint === '') {
+		isPoint = savePoint;
+		currentNumber = currentNumber + '' + isPoint;
+		updateValue(currentNumber);
+	}
+});
+
+let combineOpera = '';
 function chooseOperator(event) {
 	operator = event.target.innerText;
 
 	if (addOpera === '') {
 		addOpera = operator;
+		combineOpera = addOpera;
+	} else {
+		combineOpera = operator;
 	}
 	if (previousNumber === '') {
 		previousNumber = currentNumber;
+		previousNumber = previousNumber + '' + combineOpera;
+		updateValue(previousNumber);
 		currentNumber = '';
 	}
 	if (addOpera === 'x' && currentNumber !== '') {
@@ -54,8 +73,9 @@ function chooseOperator(event) {
 		currentNumber = result;
 		addOpera = '';
 		previousNumber = currentNumber;
+		previousNumber = previousNumber + '' + combineOpera;
 		currentNumber = '';
-		updateValue(result);
+		updateValue(previousNumber);
 	}
 
 	if (addOpera === '-' && currentNumber !== '') {
@@ -66,8 +86,9 @@ function chooseOperator(event) {
 		currentNumber = result;
 		addOpera = '';
 		previousNumber = currentNumber;
+		previousNumber = previousNumber + '' + combineOpera;
 		currentNumber = '';
-		updateValue(result);
+		updateValue(previousNumber);
 	}
 
 	if (addOpera === '/' && currentNumber !== '') {
@@ -78,8 +99,9 @@ function chooseOperator(event) {
 		currentNumber = result;
 		addOpera = '';
 		previousNumber = currentNumber;
+		previousNumber = previousNumber + '' + combineOpera;
 		currentNumber = '';
-		updateValue(result);
+		updateValue(previousNumber);
 	}
 
 	if (addOpera === '+' && currentNumber !== '') {
@@ -90,8 +112,9 @@ function chooseOperator(event) {
 		currentNumber = result;
 		addOpera = '';
 		previousNumber = currentNumber;
+		previousNumber = previousNumber + '' + combineOpera;
 		currentNumber = '';
-		updateValue(result);
+		updateValue(previousNumber);
 	}
 }
 
@@ -118,13 +141,16 @@ function updateValue(values) {
 	displayText.value = values;
 }
 
+let btnText = '';
 function updateNumber(event) {
-	let btnText = event.target.innerText;
-	if (currentNumber === '0') {
-		currentNumber = '';
+	currentNumber += event.target.innerText;
+	if (previousNumber === '') {
+		btnText = previousNumber + '' + currentNumber;
+		updateValue(btnText);
+		return;
 	}
-	currentNumber += btnText;
-	updateValue(currentNumber);
+	btnText = previousNumber + '' + currentNumber;
+	updateValue(btnText);
 }
 
 btnNums.forEach((clickNums) => {
@@ -149,6 +175,7 @@ equalBtn.addEventListener('click', () => {
 				currentNumber = '';
 				updateValue(result);
 				previousNumber = '';
+				isPoint = '';
 				break;
 			case '-':
 				result = operate(operator, prev, curr);
@@ -157,7 +184,8 @@ equalBtn.addEventListener('click', () => {
 				previousNumber = currentNumber;
 				currentNumber = '';
 				updateValue(result);
-				previousNumber;
+				previousNumber = '';
+				isPoint = '';
 				break;
 			case '%':
 				result = operate(operator, prev, curr);
@@ -166,8 +194,8 @@ equalBtn.addEventListener('click', () => {
 				previousNumber = currentNumber;
 				currentNumber = '';
 				updateValue(result);
-				// result = '';
-				previousNumber;
+				previousNumber = '';
+				isPoint = '';
 				break;
 			case 'x':
 				result = operate(operator, prev, curr);
@@ -177,6 +205,7 @@ equalBtn.addEventListener('click', () => {
 				currentNumber = '';
 				updateValue(result);
 				previousNumber = '';
+				isPoint = '';
 				break;
 			case '/':
 				switch (true) {
@@ -186,14 +215,16 @@ equalBtn.addEventListener('click', () => {
 						updateValue(result);
 						break;
 				}
-				break;
-				result = operate(operator, prev, curr);
-				currentNumber = result;
-				operator = '';
-				previousNumber = currentNumber;
-				currentNumber = '';
-				updateValue(result);
-				previousNumber = '';
+				if (operator === '/' && curr !== 0 && prev !== 0) {
+					result = operate(operator, prev, curr);
+					currentNumber = result;
+					operator = '';
+					previousNumber = currentNumber;
+					currentNumber = '';
+					updateValue(result);
+					previousNumber = '';
+					isPoint = '';
+				}
 				break;
 			default:
 				break;
@@ -202,20 +233,33 @@ equalBtn.addEventListener('click', () => {
 });
 
 clearBtn.addEventListener('click', () => {
-	currentNumber = '0';
+	currentNumber = '';
 	operator = '';
+	addOpera = '';
 	previousNumber = '';
+	isPoint = '';
 	result = 0;
-	updateValue(currentNumber);
+	displayText.value = '0';
 });
 
 backSpaceBtn.addEventListener('click', () => {
-	if (previousNumber === result) {
-		currentNumber = result;
-		let convertResultToString = String(currentNumber);
-		// console.log(convertResultToString);
-		let currentLength = convertResultToString.length;
-		currentNumber = currentNumber.slice(0, currentLength - 1);
+	if (currentNumber !== '') {
+		let currentLength = btnText.length;
+		btnText = btnText.slice(0, currentLength - 1);
+
+		updateValue(btnText);
+		let getLengthOfDisplay = currentNumber.length;
+		currentNumber = currentNumber.slice(0, getLengthOfDisplay - 1);
+		return;
+	}
+
+	if (previousNumber !== '') {
+		let getLengthOfDisplay = previousNumber.length;
+		previousNumber = previousNumber.slice(0, getLengthOfDisplay - 1);
+
+		updateValue(previousNumber);
+
+		return;
 	}
 
 	let getLengthOfDisplay = currentNumber.length;
@@ -226,4 +270,5 @@ backSpaceBtn.addEventListener('click', () => {
 	}
 
 	updateValue(currentNumber);
+	currentNumber = '';
 });
