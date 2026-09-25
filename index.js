@@ -50,6 +50,7 @@ decimalPoint.addEventListener('click', (event) => {
 });
 
 let combineOpera = '';
+
 function chooseOperator(event) {
 	operator = event.target.innerText;
 
