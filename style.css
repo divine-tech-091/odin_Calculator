@@ -49,6 +49,13 @@ body {
 	grid-template-columns: repeat(4, 1fr);
 	gap: 0.8em;
 }
+.inner_container {
+	display: flex;
+	gap: 0.8em;
+}
+.inner_container > button {
+	flex: 1;
+}
 .small_container {
 	grid-column: 1 / -1;
 }

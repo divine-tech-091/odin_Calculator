@@ -221,8 +221,6 @@ function keyboardEvent(isEvent) {
 }
 
 document.addEventListener('keydown', (events) => {
-	console.log(events.key);
-
 	if (events.key === '1') {
 		currentNumber += events.key;
 		if (previousNumber === '') {
