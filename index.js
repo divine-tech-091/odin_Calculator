@@ -14,10 +14,6 @@ function divide(six, three) {
 	return six / three;
 }
 
-function remainder(num1, num2) {
-	return num1 % num2;
-}
-
 let currentNumber = '';
 let operator = '';
 let previousNumber = '';
@@ -66,7 +62,7 @@ function chooseOperator(event) {
 		updateValue(previousNumber);
 		currentNumber = '';
 	}
-	if (addOpera === 'x' && currentNumber !== '') {
+	if (addOpera === '*' && currentNumber !== '') {
 		const previous = parseFloat(previousNumber);
 		const current = parseFloat(currentNumber);
 
@@ -123,7 +119,7 @@ function operate(isOperator, firstNum, secondNum) {
 	if (isOperator === '+') {
 		return add(firstNum, secondNum);
 	}
-	if (isOperator === 'x') {
+	if (isOperator === '*') {
 		return multiply(firstNum, secondNum);
 	}
 	if (isOperator === '/') {
@@ -131,10 +127,6 @@ function operate(isOperator, firstNum, secondNum) {
 	}
 	if (isOperator === '-') {
 		return subtract(firstNum, secondNum);
-	}
-
-	if (isOperator === '%') {
-		return remainder(firstNum, secondNum);
 	}
 }
 
@@ -157,6 +149,266 @@ function updateNumber(event) {
 btnNums.forEach((clickNums) => {
 	clickNums.addEventListener('click', updateNumber);
 });
+
+/* 	This function displays an operator key, when pressed on keyboard */
+
+function keyboardEvent(isEvent) {
+	operator = isEvent;
+
+	if (addOpera === '') {
+		addOpera = operator;
+		combineOpera = addOpera;
+	} else {
+		combineOpera = operator;
+	}
+	if (previousNumber === '') {
+		previousNumber = currentNumber;
+		previousNumber = previousNumber + '' + combineOpera;
+		updateValue(previousNumber);
+		currentNumber = '';
+	}
+	if (addOpera === '*' && currentNumber !== '') {
+		const previous = parseFloat(previousNumber);
+		const current = parseFloat(currentNumber);
+
+		result = operate(addOpera, previous, current);
+		currentNumber = result;
+		addOpera = '';
+		previousNumber = currentNumber;
+		previousNumber = previousNumber + '' + combineOpera;
+		currentNumber = '';
+		updateValue(previousNumber);
+	}
+
+	if (addOpera === '-' && currentNumber !== '') {
+		const previous = parseFloat(previousNumber);
+		const current = parseFloat(currentNumber);
+
+		result = operate(addOpera, previous, current);
+		currentNumber = result;
+		addOpera = '';
+		previousNumber = currentNumber;
+		previousNumber = previousNumber + '' + combineOpera;
+		currentNumber = '';
+		updateValue(previousNumber);
+	}
+
+	if (addOpera === '/' && currentNumber !== '') {
+		const previous = parseFloat(previousNumber);
+		const current = parseFloat(currentNumber);
+
+		result = operate(addOpera, previous, current);
+		currentNumber = result;
+		addOpera = '';
+		previousNumber = currentNumber;
+		previousNumber = previousNumber + '' + combineOpera;
+		currentNumber = '';
+		updateValue(previousNumber);
+	}
+
+	if (addOpera === '+' && currentNumber !== '') {
+		const previous = parseFloat(previousNumber);
+		const current = parseFloat(currentNumber);
+
+		result = operate(addOpera, previous, current);
+		currentNumber = result;
+		addOpera = '';
+		previousNumber = currentNumber;
+		previousNumber = previousNumber + '' + combineOpera;
+		currentNumber = '';
+		updateValue(previousNumber);
+	}
+}
+
+document.addEventListener('keydown', (events) => {
+	console.log(events.key);
+
+	if (events.key === '1') {
+		currentNumber += events.key;
+		if (previousNumber === '') {
+			btnText = previousNumber + '' + currentNumber;
+			updateValue(btnText);
+			return;
+		}
+		btnText = previousNumber + '' + currentNumber;
+		updateValue(btnText);
+		return;
+	} else if (events.key === '2') {
+		currentNumber += events.key;
+		if (previousNumber === '') {
+			btnText = previousNumber + '' + currentNumber;
+			updateValue(btnText);
+			return;
+		}
+		btnText = previousNumber + '' + currentNumber;
+		updateValue(btnText);
+		return;
+	} else if (events.key === '3') {
+		currentNumber += events.key;
+		if (previousNumber === '') {
+			btnText = previousNumber + '' + currentNumber;
+			updateValue(btnText);
+			return;
+		}
+		btnText = previousNumber + '' + currentNumber;
+		updateValue(btnText);
+		return;
+	} else if (events.key === '4') {
+		currentNumber += events.key;
+		if (previousNumber === '') {
+			btnText = previousNumber + '' + currentNumber;
+			updateValue(btnText);
+			return;
+		}
+		btnText = previousNumber + '' + currentNumber;
+		updateValue(btnText);
+		return;
+	} else if (events.key === '5') {
+		currentNumber += events.key;
+		if (previousNumber === '') {
+			btnText = previousNumber + '' + currentNumber;
+			updateValue(btnText);
+			return;
+		}
+		btnText = previousNumber + '' + currentNumber;
+		updateValue(btnText);
+		return;
+	} else if (events.key === '6') {
+		currentNumber += events.key;
+		if (previousNumber === '') {
+			btnText = previousNumber + '' + currentNumber;
+			updateValue(btnText);
+			return;
+		}
+		btnText = previousNumber + '' + currentNumber;
+		updateValue(btnText);
+		return;
+	} else if (events.key === '7') {
+		currentNumber += events.key;
+		if (previousNumber === '') {
+			btnText = previousNumber + '' + currentNumber;
+			updateValue(btnText);
+			return;
+		}
+		btnText = previousNumber + '' + currentNumber;
+		updateValue(btnText);
+		return;
+	} else if (events.key === '8') {
+		currentNumber += events.key;
+		if (previousNumber === '') {
+			btnText = previousNumber + '' + currentNumber;
+			updateValue(btnText);
+			return;
+		}
+		btnText = previousNumber + '' + currentNumber;
+		updateValue(btnText);
+		return;
+	} else if (events.key === '9') {
+		currentNumber += events.key;
+		if (previousNumber === '') {
+			btnText = previousNumber + '' + currentNumber;
+			updateValue(btnText);
+			return;
+		}
+		btnText = previousNumber + '' + currentNumber;
+		updateValue(btnText);
+		return;
+	} else if (events.key === '0') {
+		currentNumber += events.key;
+		if (previousNumber === '') {
+			btnText = previousNumber + '' + currentNumber;
+			updateValue(btnText);
+			return;
+		}
+		btnText = previousNumber + '' + currentNumber;
+		updateValue(btnText);
+		return;
+	} else if (events.key === '/') {
+		let saveKey = events.key;
+		keyboardEvent(saveKey);
+		return;
+	} else if (events.key === '+') {
+		let saveKey = events.key;
+		keyboardEvent(saveKey);
+		return;
+	} else if (events.key === '-') {
+		let saveKey = events.key;
+		keyboardEvent(saveKey);
+		return;
+	} else if (events.key === '*') {
+		let saveKey = events.key;
+		keyboardEvent(saveKey);
+		return;
+	} else if (events.key === 'Enter') {
+		equalKey();
+		return;
+	} else if (events.key === 'Backspace') {
+		backSpace();
+		return;
+	}
+});
+
+/* this function display the final result, when the "Enter" key */
+function equalKey() {
+	const prev = parseFloat(previousNumber);
+	const curr = parseFloat(currentNumber);
+
+	if (!isNaN(prev) && !isNaN(curr)) {
+		switch (operator) {
+			case '+':
+				result = operate(operator, prev, curr);
+				currentNumber = result;
+				operator = '';
+				previousNumber = currentNumber;
+				currentNumber = '';
+				updateValue(result);
+				previousNumber = '';
+				isPoint = '';
+				break;
+			case '-':
+				result = operate(operator, prev, curr);
+				currentNumber = result;
+				operator = '';
+				previousNumber = currentNumber;
+				currentNumber = '';
+				updateValue(result);
+				previousNumber = '';
+				isPoint = '';
+				break;
+			case '*':
+				result = operate(operator, prev, curr);
+				currentNumber = result;
+				operator = '';
+				previousNumber = currentNumber;
+				currentNumber = '';
+				updateValue(result);
+				previousNumber = '';
+				isPoint = '';
+				break;
+			case '/':
+				switch (true) {
+					case curr === 0 || prev === 0:
+						let isError = 'Error';
+						result = isError;
+						updateValue(result);
+						break;
+				}
+				if (operator === '/' && curr !== 0 && prev !== 0) {
+					result = operate(operator, prev, curr);
+					currentNumber = result;
+					operator = '';
+					previousNumber = currentNumber;
+					currentNumber = '';
+					updateValue(result);
+					previousNumber = '';
+					isPoint = '';
+				}
+				break;
+			default:
+				break;
+		}
+	}
+}
 
 operatorBtn.forEach((clickOperator) => {
 	clickOperator.addEventListener('click', chooseOperator);
@@ -188,17 +440,7 @@ equalBtn.addEventListener('click', () => {
 				previousNumber = '';
 				isPoint = '';
 				break;
-			case '%':
-				result = operate(operator, prev, curr);
-				currentNumber = result;
-				operator = '';
-				previousNumber = currentNumber;
-				currentNumber = '';
-				updateValue(result);
-				previousNumber = '';
-				isPoint = '';
-				break;
-			case 'x':
+			case '*':
 				result = operate(operator, prev, curr);
 				currentNumber = result;
 				operator = '';
@@ -239,7 +481,7 @@ clearBtn.addEventListener('click', () => {
 	addOpera = '';
 	previousNumber = '';
 	isPoint = '';
-	result = 0;
+	result = '';
 	displayText.value = '0';
 });
 
@@ -273,3 +515,36 @@ backSpaceBtn.addEventListener('click', () => {
 	updateValue(currentNumber);
 	currentNumber = '';
 });
+
+/* This function remove a single character key, when the BackSpace btn is pressed */
+
+function backSpace() {
+	if (currentNumber !== '') {
+		let currentLength = btnText.length;
+		btnText = btnText.slice(0, currentLength - 1);
+
+		updateValue(btnText);
+		let getLengthOfDisplay = currentNumber.length;
+		currentNumber = currentNumber.slice(0, getLengthOfDisplay - 1);
+		return;
+	}
+
+	if (previousNumber !== '') {
+		let getLengthOfDisplay = previousNumber.length;
+		previousNumber = previousNumber.slice(0, getLengthOfDisplay - 1);
+
+		updateValue(previousNumber);
+
+		return;
+	}
+
+	let getLengthOfDisplay = currentNumber.length;
+	currentNumber = currentNumber.slice(0, getLengthOfDisplay - 1);
+
+	if (currentNumber === '') {
+		currentNumber = '0';
+	}
+
+	updateValue(currentNumber);
+	currentNumber = '';
+}
