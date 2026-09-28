@@ -61,6 +61,9 @@ function chooseOperator(event) {
 		previousNumber = previousNumber + '' + combineOpera;
 		updateValue(previousNumber);
 		currentNumber = '';
+	} else {
+		previousNumber = previousNumber + '' + combineOpera;
+		updateValue(previousNumber);
 	}
 	if (addOpera === '*' && currentNumber !== '') {
 		const previous = parseFloat(previousNumber);
@@ -161,11 +164,15 @@ function keyboardEvent(isEvent) {
 	} else {
 		combineOpera = operator;
 	}
+
 	if (previousNumber === '') {
 		previousNumber = currentNumber;
 		previousNumber = previousNumber + '' + combineOpera;
 		updateValue(previousNumber);
 		currentNumber = '';
+	} else {
+		previousNumber = previousNumber + '' + combineOpera;
+		updateValue(previousNumber);
 	}
 	if (addOpera === '*' && currentNumber !== '') {
 		const previous = parseFloat(previousNumber);
@@ -384,14 +391,14 @@ function equalKey() {
 				isPoint = '';
 				break;
 			case '/':
-				switch (true) {
-					case curr === 0 || prev === 0:
-						let isError = 'Error';
-						result = isError;
-						updateValue(result);
-						break;
-				}
-				if (operator === '/' && curr !== 0 && prev !== 0) {
+				if (curr === 0) {
+					let isError = 'Error';
+					result = isError;
+					updateValue(result);
+					currentNumber = '';
+					previousNumber = '';
+					return;
+				} else if (operator === '/' || prev !== 0) {
 					result = operate(operator, prev, curr);
 					currentNumber = result;
 					operator = '';
@@ -449,14 +456,14 @@ equalBtn.addEventListener('click', () => {
 				isPoint = '';
 				break;
 			case '/':
-				switch (true) {
-					case curr === 0 || prev === 0:
-						let isError = 'Error';
-						result = isError;
-						updateValue(result);
-						break;
-				}
-				if (operator === '/' && curr !== 0 && prev !== 0) {
+				if (curr === 0) {
+					let isError = 'Error';
+					result = isError;
+					updateValue(result);
+					currentNumber = '';
+					previousNumber = '';
+					return;
+				} else if (operator === '/' || prev !== 0) {
 					result = operate(operator, prev, curr);
 					currentNumber = result;
 					operator = '';
@@ -499,7 +506,6 @@ backSpaceBtn.addEventListener('click', () => {
 		previousNumber = previousNumber.slice(0, getLengthOfDisplay - 1);
 
 		updateValue(previousNumber);
-
 		return;
 	}
 
